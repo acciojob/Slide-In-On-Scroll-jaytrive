@@ -57,7 +57,19 @@
         if (callNow) func.apply(context, args);
       };
     }
-
+	function scrolling() {
+		let images=document.querySelectorAll('.slide-in')
+		images.forEach((img) => {
+			let scrolled=window.innerHeight+window.scrollY-img.height/2
+			if (scrolled>img.offsetTop) {
+				img.classList.add('active')
+			}
+			else if(img.offsetTop+img.height>scrolled){
+				img.classList.remove('active')
+			}
+		})
+	}
+	window.addEventListener('scroll',debounce(scrolling))
   </script>
 
   <style>
